@@ -13,4 +13,14 @@
 
 Route::get('/', function () {
     return view('welcome');
+
+
+
+
 });
+
+//Route::get('/nba', function () {
+//    return view('nba-stats.nba');});
+
+
+Route::get('/nba', 'boxscoreTest@boxScoreGetter');

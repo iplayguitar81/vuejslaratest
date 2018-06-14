@@ -24,3 +24,8 @@ Route::get('/', function () {
 
 
 Route::get('/nba', 'boxscoreTest@boxScoreGetter');
+
+Route::post('/nba', 'boxscoreTest@boxScorePost');
+
+
+//Route::post('/nba', 'boxscoreTest@boxScorePost');

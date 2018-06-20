@@ -1,5 +1,12 @@
 <?php
 
+use Illuminate\Http\Request;
+
+use App\Http\Requests;
+
+use GuzzleHttp\Exception\GuzzleException;
+use GuzzleHttp\Client;
+
 function printResult($content)
 {
     //   global $TIME_ZONE;
@@ -426,6 +433,11 @@ function buildURL($host, $sport, $method, $id, $penny, $parameters)
     }
     return $url;
 }
+
+
+
+
+
 
 
 

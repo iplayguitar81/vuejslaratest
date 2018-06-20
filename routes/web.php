@@ -23,9 +23,31 @@ Route::get('/', function () {
 //    return view('nba-stats.nba');});
 
 
-Route::get('/nba', 'boxscoreTest@boxScoreGetter');
+//Route::get('/nba', 'boxscoreTest@boxscoreViewer');
 
-Route::post('/nba', 'boxscoreTest@boxScorePost');
+Route::get('/nba', 'boxscoreTest@boxScoreGetter');
+Route::get('/ajax', 'boxscoreTest@boxScorePost');
+
+Route::post('/test', ['as' => 'nba-stats.test-view', 'uses'=>'boxscoreTest@boxScorePost']);
+
+//Route::get('/ajaxgetter', 'boxscoreTest@boxScoreGetter');
+
+
+//Route::get('/testview', function(){
+ //   return view('nba-stats.test-view');
+
+
+
+Route::get('testerson', function(){ return view('nba-stats.test-stats'); });
+
+
+Route::post('/postajax', 'boxscoreTest@boxScoreAjax');
+
+Route::post('/postajax2', 'boxscoreTest@boxScoreAjax2');
+
+
+//});
+
 
 
 //Route::post('/nba', 'boxscoreTest@boxScorePost');

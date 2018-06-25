@@ -8,6 +8,12 @@
         <p>at</p>
         {{$boxscore->boxscore_json['home_team']['full_name'].' '.$boxscore->boxscore_json['home_totals']['points']}}
         <br/>
+        <br/>
+
+        {{$boxscore->boxscore_json['event_information']['site']['name']}}
+        <br/>
+        <br/>
+        {{gameDate($boxscore->boxscore_date)}}
 
     </div>
 

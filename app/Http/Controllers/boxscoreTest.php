@@ -24,7 +24,7 @@ class boxscoreTest extends Controller
 
        // $gameString = $request->message;
 
-        $ACCESS_TOKEN = '0ef7bc26-d2c2-4821-8d26-2804598c50c9';
+        $ACCESS_TOKEN = env('STATS_API_KEY');
         // $USER_AGENT = 'trailblazersfans/0.1 (trailblazersfans.com)';
 
         // return 'something';
@@ -85,16 +85,13 @@ class boxscoreTest extends Controller
 
        // $gameString = $request->input('gameString');
 
-        $ACCESS_TOKEN = '0ef7bc26-d2c2-4821-8d26-2804598c50c9';
+        $ACCESS_TOKEN = env('STATS_API_KEY');
         // $USER_AGENT = 'trailblazersfans/0.1 (trailblazersfans.com)';
-
-        // return 'something';
 
         $client = new Client([
 
 
         ]);
-
 
 
         $url = 'https://erikberg.com/nba/boxscore/20151028-new-orleans-pelicans-at-portland-trail-blazers.json';
@@ -106,9 +103,7 @@ class boxscoreTest extends Controller
             'headers' => [
                 'Authorization' => 'Bearer ' . $ACCESS_TOKEN
             ]
-//        'json' => [
-//            'code' => $ACCESS_TOKEN
-//                  ],
+
 
         ]);
         $data = $response->getBody();
@@ -141,7 +136,14 @@ class boxscoreTest extends Controller
 
         $gameString = $request->message;
 
-        $ACCESS_TOKEN = '0ef7bc26-d2c2-4821-8d26-2804598c50c9';
+        //grab team id for events
+       // $teamID = $request->message;
+
+
+        //grab sport for teams
+       // $sport = $request->message;
+
+        $ACCESS_TOKEN = env('STATS_API_KEY');
         // $USER_AGENT = 'trailblazersfans/0.1 (trailblazersfans.com)';
 
         // return 'something';
@@ -154,6 +156,14 @@ class boxscoreTest extends Controller
 
 
         $url = 'https://erikberg.com/nba/boxscore/'.$gameString.'.json';
+
+        //event request
+        //date=20130131&sport=nba
+
+        //https://erikberg.com/nba/results/golden-state-warriors.json
+        //$url = 'https://erikberg.com/nba/results/'.$teamID.'.json?season=2018&since=20171001&until=20180630';
+
+       // $url = 'https://erikberg.com/'.$sport.'/teams.json';
 
 
         $response = $client->request('GET', $url,[
@@ -170,23 +180,13 @@ class boxscoreTest extends Controller
         $data = json_decode($data);
 
 
-
-
-
-
-
-
-
-
-
-
-//        $response = array(
-//            'msg' => $data
-//        );
-
        // $response = $data;
 
+        //boxscore data
+      //  return response()->json(['boxscore' => $data], 200);
+
         return response()->json(['boxscore' => $data], 200);
+
 
        // return array( 'stats' => $data );
       //  return $response->getBody();

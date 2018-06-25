@@ -11,13 +11,55 @@
 |
 */
 
+use App\Team;
+use App\Roster;
+use App\Schedule;
+use App\Boxscore;
+
+
+
 Route::get('/', function () {
     return view('welcome');
 
-
-
-
 });
+
+
+Route::get('/teams', function () {
+
+    $teams = Team::all();
+
+    return view('nba-stats.teams', compact('teams'));
+});
+
+Route::get('/rosters', function () {
+
+    $rosters = Roster::all();
+
+
+
+    return view('nba-stats.rosters', compact('rosters'));
+});
+
+Route::get('/schedules', function () {
+
+    $schedules = Schedule::all();
+
+
+
+    return view('nba-stats.schedules', compact('schedules'));
+});
+
+
+Route::get('/boxscores', function () {
+
+    $boxscores = Boxscore::orderBy('boxscore_date', 'asc')->paginate(10);
+
+
+
+
+    return view('nba-stats.boxscores', compact('boxscores'));
+});
+
 
 //Route::get('/nba', function () {
 //    return view('nba-stats.nba');});
@@ -45,6 +87,8 @@ Route::post('/postajax', 'boxscoreTest@boxScoreAjax');
 
 Route::post('/postajax2', 'boxscoreTest@boxScoreAjax2');
 
+
+Route::get('boxscore/{id}/{event_id}', ['as' => 'boxscore.show', 'uses' => 'BoxscoreController@show']);
 
 //});
 

@@ -90,6 +90,9 @@ Route::post('/postajax2', 'boxscoreTest@boxScoreAjax2');
 
 Route::get('boxscore/{id}/{event_id}', ['as' => 'boxscore.show', 'uses' => 'BoxscoreController@show']);
 
+Route::get('team/{team_id}', ['as' => 'team.show', 'uses' => 'TeamController@show']);
+
+
 //});
 
 

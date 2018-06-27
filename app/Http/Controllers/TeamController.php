@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Team;
+use App\Schedule;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
+
 
 class TeamController extends Controller
 {
@@ -41,15 +45,17 @@ class TeamController extends Controller
 
     public function show($slug)
     {
-        //
+
+        $team_id = $slug;
        // $team = Team::findOrFail($id);
         $team = Team::where('team_id', $slug)->first();
-
-     //  $team = Team::where('team_id', $slug)->findOrFail();
-
+       // $schedule = Schedule::where('team_id', '=', 'miami-heat')->get();
 
 
-        return view('team.show', compact('team') );
+        $schedule = DB::table('schedules')->where('team_id', $slug)->get();
+
+
+        return view('team.show', compact('team', 'schedule') );
 
        // dd($team);
 

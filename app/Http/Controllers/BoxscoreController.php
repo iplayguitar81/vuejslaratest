@@ -39,10 +39,10 @@ class BoxscoreController extends Controller
     }
 
 
-    public function show($id)
+    public function show($slug)
     {
         //
-        $boxscore = Boxscore::findOrFail($id);
+        $boxscore = Boxscore::where('event_id', $slug)->first();
 
         return view('boxscore.show', compact('boxscore') );
     }

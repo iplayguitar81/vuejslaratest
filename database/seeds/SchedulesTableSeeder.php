@@ -63,6 +63,8 @@ class SchedulesTableSeeder extends Seeder
                     'event_id' => $event['event_id'],
                     'schedule_json' => json_encode($event),
                     'event_date' => $event['event_start_date_time'],
+                    'team_id' => $teamVar,
+
 
                 ]);
 

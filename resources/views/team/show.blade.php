@@ -1,4 +1,4 @@
-
+<h1>{{$team->team_json['full_name']}}</h1>
 <div>
     <p>City:  {{$team->team_json['city']}}</p>
     <p>State:  {{$team->team_json['state']}}</p>
@@ -12,11 +12,17 @@
 
     <br/>
 
-    @foreach($schedule as $event)
 
-        <p><a href="{{url('/boxscores/'.$event->event_id)}}">{{$event->event_id}}</a></p>
+    <p><a href="{{url('/rosters/'.$team->team_id)}}">{{$team->team_json['full_name']}} Team Roster</a></p>
 
-    @endforeach
+
+    <p><a href="{{url('/schedules/'.$team->team_id)}}">{{$team->team_json['full_name']}} Team Results</a></p>
+
+    {{--@foreach($schedule as $event)--}}
+
+        {{--<p><a href="{{url('/boxscores/'.$event->event_id)}}">{{$event->event_id}}</a></p>--}}
+
+    {{--@endforeach--}}
 
     <br/>
     <br/>

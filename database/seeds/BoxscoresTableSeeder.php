@@ -26,8 +26,8 @@ class BoxscoresTableSeeder extends Seeder
 
         $schedules = Schedule::all();
 
-       // $email = DB::table('schedules.blade.php')->where('name', 'John')->value('email');
-      //  $schedules = Schedule::where('schedule_json->event_status', 'completed')
+       // $email = DB::table('schedule.blade.php')->where('name', 'John')->value('email');
+      //  $schedule = Schedule::where('schedule_json->event_status', 'completed')
          //   ->get();
 
 //20180207-indiana-pacers-at-new-orleans-pelicans.json

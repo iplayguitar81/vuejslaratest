@@ -2,16 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Team;
 use App\Schedule;
-use App\Roster;
+use App\Team;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-
-
-class TeamController extends Controller
+class ScheduleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -47,32 +44,31 @@ class TeamController extends Controller
 
     public function show($slug)
     {
+        //
 
-        //$team_id = $slug;
-       // $team = Team::findOrFail($id);
         $team = Team::where('team_id', $slug)->first();
-       // $schedule = Schedule::where('team_id', '=', 'miami-heat')->get();
+        // $schedule = Schedule::where('team_id', '=', 'miami-heat')->get();
 
 
-        $schedule = DB::table('schedules')->where('team_id', $slug)->get();
-
-        $roster = Roster::where('team_id', $slug)->first();
+        $schedules = Schedule::where('team_id', $slug)->paginate(10);
 
 
+        //$boxscores = Boxscore::orderBy('boxscore_date', 'asc')->paginate(10);
 
-        return view('team.show', compact('team','schedule', 'roster') );
 
-       // dd($team);
+        return view('schedule.show', compact('team','schedules') );
+
+
 
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Team  $team
+     * @param  \App\Schedule  $schedule
      * @return \Illuminate\Http\Response
      */
-    public function edit(Team $team)
+    public function edit(Schedule $schedule)
     {
         //
     }
@@ -81,10 +77,10 @@ class TeamController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Team  $team
+     * @param  \App\Schedule  $schedule
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Team $team)
+    public function update(Request $request, Schedule $schedule)
     {
         //
     }
@@ -92,10 +88,10 @@ class TeamController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Team  $team
+     * @param  \App\Schedule  $schedule
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Team $team)
+    public function destroy(Schedule $schedule)
     {
         //
     }

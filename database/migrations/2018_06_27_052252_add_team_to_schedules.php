@@ -14,7 +14,7 @@ class AddTeamToSchedules extends Migration
     public function up()
     {
 
-        Schema::table('schedules', function($table) {
+        Schema::table('schedule', function($table) {
             $table->string('team_id');
         });
 

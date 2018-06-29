@@ -2,16 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Team;
-use App\Schedule;
 use App\Roster;
-
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
-
-
-class TeamController extends Controller
+class RosterController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -44,35 +38,29 @@ class TeamController extends Controller
         //
     }
 
-
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Roster  $roster
+     * @return \Illuminate\Http\Response
+     */
     public function show($slug)
     {
-
-        //$team_id = $slug;
-       // $team = Team::findOrFail($id);
-        $team = Team::where('team_id', $slug)->first();
-       // $schedule = Schedule::where('team_id', '=', 'miami-heat')->get();
-
-
-        $schedule = DB::table('schedules')->where('team_id', $slug)->get();
+        //
 
         $roster = Roster::where('team_id', $slug)->first();
 
-
-
-        return view('team.show', compact('team','schedule', 'roster') );
-
-       // dd($team);
+        return view('roster.show', compact('roster') );
 
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Team  $team
+     * @param  \App\Roster  $roster
      * @return \Illuminate\Http\Response
      */
-    public function edit(Team $team)
+    public function edit(Roster $roster)
     {
         //
     }
@@ -81,10 +69,10 @@ class TeamController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Team  $team
+     * @param  \App\Roster  $roster
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Team $team)
+    public function update(Request $request, Roster $roster)
     {
         //
     }
@@ -92,10 +80,10 @@ class TeamController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Team  $team
+     * @param  \App\Roster  $roster
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Team $team)
+    public function destroy(Roster $roster)
     {
         //
     }

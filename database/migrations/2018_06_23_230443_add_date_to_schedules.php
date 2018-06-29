@@ -15,7 +15,7 @@ class AddDateToSchedules extends Migration
     {
         //$table->dateTime('created_at');
 
-        Schema::table('schedules', function($table) {
+        Schema::table('schedule', function($table) {
             $table->string('event_date');
         });
 

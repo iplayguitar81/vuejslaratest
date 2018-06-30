@@ -1,6 +1,5 @@
 
-
- <p>{{' event_id: '.$boxscore->event_id}}</p>
+<p>{{' event_id: '.$boxscore->event_id}}</p>
     <div>
 
         {{$boxscore->boxscore_json['away_team']['full_name'].' '.$boxscore->boxscore_json['away_totals']['points']}}
@@ -80,8 +79,6 @@
             @endforeach
         </ul>
 
-
-
         @php
            $attendence_percentage = round(($boxscore->boxscore_json['event_information']['attendance']/ $boxscore->boxscore_json['event_information']['site']['capacity'] * 100), 2);
         @endphp
@@ -89,11 +86,6 @@
         <p>There were {{$boxscore->boxscore_json['event_information']['attendance']}} out of a possible {{$boxscore->boxscore_json['event_information']['site']['capacity']}} fans in attendace. This means that {{$boxscore->boxscore_json['event_information']['site']['name']}} was {{$attendence_percentage}}% filled to capacity.</p>
 
     </div>
-
-
-
-
-
 
 
 <br/>

@@ -1,5 +1,10 @@
+@extends('layout')
+@section('title', 'NBA Teams')
+@section('content')
 
-<h1>Teams</h1>
+    <div class="container">
+
+<h1>NBA Teams</h1>
     @foreach($teams as $team)
 
         <a href="{{url('/teams/'.$team->team_json["team_id"])}}"> {{$team->team_json['full_name']}}</a>
@@ -10,3 +15,6 @@
 
     @endforeach
 
+    </div>
+
+@endsection

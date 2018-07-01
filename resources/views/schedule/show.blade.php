@@ -1,3 +1,9 @@
+@extends('layout')
+@section('title', $team->team_json['full_name'].' Results')
+@section('content')
+
+    <div class="container">
+
 <h1>{{$team->team_json['full_name']}} Results</h1>
 @foreach($schedules as $schedule)
 
@@ -12,3 +18,7 @@
 
 
 <div class="pagination"> {!! $schedules->render() !!} </div>
+
+    </div>
+
+@endsection

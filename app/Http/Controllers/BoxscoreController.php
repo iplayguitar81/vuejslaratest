@@ -3,7 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Boxscore;
+use App\Team;
+
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
+
 
 class BoxscoreController extends Controller
 {
@@ -46,6 +51,67 @@ class BoxscoreController extends Controller
 
         return view('boxscore.show', compact('boxscore') );
     }
+
+
+    public function showStats(){
+
+       // $boxscore = Boxscore::all();
+
+       // $team = Team::all();
+
+       // $team = $team->where('team_json->city', 'Portland');
+
+        $team = DB::table('teams')
+            ->where('team_json->city', 'Portland')
+            ->get(['team_json']);
+
+       $team = json_decode($team,true);
+
+       // $team = json_encode($team);
+
+        $player = DB::table('boxscores')
+            ->where('boxscore_json->away_stats->display_name', 'Alex Len')
+            ->get();
+
+        //Note::where('note_id','1')->get(['user_id']);
+
+
+//        $team = Team::where([
+//            ['team_json->team_id', 'like', 'toronto-raptors'],
+//        ])->get();
+
+
+//       $teamArr = ['atlanta-hawks', 'dallas-mavericks', 'chicago-bulls'];
+//
+//        $team = Team::whereIn('team_json->team_id', $teamArr)->get();
+
+      // $team = DB::table('teams')->where(DB::raw('JSON_EXTRACT(`teams.team_json`, "$.team_id")'), '=', 'dallas-mavericks');
+
+      //  $team = DB::table('teams')->where('team_json->team_id', 'atlanta-hawks')->get();
+
+       // $team = Team::whereRaw('JSON_CONTAINS(team_json->"$[*].team_id", "atlanta-hawks")')->get();
+
+//        $boxscore = Boxscore::whereRaw('JSON_CONTAINS(boxscore_json->"$[*].display_name", "Alex Len")')->get();
+
+       // $boxscore = Boxscore::whereRaw('JSON_CONTAINS(boxscore_json->home_team->"$[*].team_id", "dallas-mavericks")')->get();
+
+//        $test_dude = [];
+
+//        foreach($boxscore as $box) {
+//            ;
+//            array_push($test_dude, $box->whereJsonContains('away_stats', 'Alex Len'));
+//
+//        }
+
+
+
+
+        //return view('boxscore.show-stats', compact('team', 'player') );
+        return view('boxscore.show-stats')->with(compact('team', 'player'));;
+
+    }
+
+
 
     /**
      * Show the form for editing the specified resource.

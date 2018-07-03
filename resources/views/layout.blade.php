@@ -36,13 +36,9 @@
 
 @yield('content')
 
-@php
-    $year = date("Y");
-@endphp
-
 <footer class="footer bg-light">
     <div class="container text-center">
-        <span class="text-muted">BowtieSoft Copyright {{$year}}</span>
+        <span class="text-muted">Copyright {{date("Y")}} BowtieSoft</span>
     </div>
 </footer>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

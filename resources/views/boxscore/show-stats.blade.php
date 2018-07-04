@@ -29,6 +29,8 @@
 
 {!! $player !!}
 
+{{var_dump($player)}}
+
 {{--{{$team->team_json['city']}}--}}
 
 

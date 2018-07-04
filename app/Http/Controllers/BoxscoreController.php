@@ -65,16 +65,29 @@ class BoxscoreController extends Controller
             ->where('team_json->city', 'Portland')
             ->get(['team_json']);
 
-       $team = json_decode($team,true);
+
+
+
+      // $team = json_decode($team,true);
 
        // $team = json_encode($team);
 
-        $player = DB::table('boxscores')
-            ->where('boxscore_json->away_stats->display_name', 'Alex Len')
-            ->get();
+//        $player = DB::table('boxscores')
+//            ->where('boxscore_json->away_team->full_name', 'Phoenix Suns')
+//            ->get();
+//
 
+       // $player = Boxscore::whereRaw('JSON_CONTAINS(boxscore_json->away_stats$., "Alex Len")')->get();
+
+//$player = Boxscore::where('boxscore_json->away_stats', 'like',  '%Alex Len%')->avg(['boxscore_json->away_stats->points']);
+
+$player = Boxscore::where('boxscore_json->away_stats', 'like',  '%LeBron James%')->count(['boxscore_json->away_stats->points']);;
+
+       // $player = Boxscore::whereRaw('JSON_CONTAINS(boxscore_json->away_stats"$[*].display_name", "Alex Len")')->get();
+
+        //$player = Boxscore::whereRaw('JSON_CONTAINS(boxscore_json->away_stats->"$[*]."->display_name, "Alex Len")')->get();
         //Note::where('note_id','1')->get(['user_id']);
-
+      // $player = Boxscore::whereRaw('JSON_CONTAINS(boxscore_json->away_team, \'{"full_name": "Phoenix Suns"}\')')->get();
 
 //        $team = Team::where([
 //            ['team_json->team_id', 'like', 'toronto-raptors'],

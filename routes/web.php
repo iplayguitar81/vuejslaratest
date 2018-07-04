@@ -97,7 +97,7 @@ Route::get('rosters/{team_id}', ['as' => 'roster.show', 'uses' => 'RosterControl
 Route::get('schedules/{team_id}', ['as' => 'schedule.show', 'uses' => 'ScheduleController@show']);
 
 
-
+Route::get('boxscores/player/test', ['as' => 'boxscore.show-stats', 'uses' => 'BoxscoreController@showStats']);
 //});
 
 

@@ -1,36 +1,44 @@
-{{--@foreach($boxscore as $player)--}}
 
 
+@php
+    $total_points = 0;
+@endphp
 
-  {{--{{var_dump($player)}}--}}
-    {{--<br/>--}}
-    {{--@endforeach--}}
+@foreach($player as $play)
+{{--{{((json_encode($play['boxscore_json']['away_stats'], true)))}}--}}
 
-{{--{{dd($team)}}--}}
-
-{{--{!! $team !!}--}}
-
-{{--{{$team[0]['team_json']['city']}}--}}
-
-{{--{{$team['0']['team_json']}}--}}
-
-{{--{{ $team[0]['team_json'] }}--}}
+@foreach($play['boxscore_json']['away_stats'] as $regis)
 
 
-{{--@foreach($team as $data)--}}
+    @if($regis['display_name'] =='LeBron James')
+
+    @php
+    $total_points+=$regis['points']
+    @endphp
+
+    @endif
 
 
-    {{--@foreach($data->team_json as $data2)--}}
-        {{--{{ $data['city'] }}--}}
+    @endforeach
+
+{{--{{$play['display_name']}}--}}
+
+@php
+//$regis = json_decode($play['boxscore_json']['away_stats'],true);
+@endphp
+
+    {{--@foreach( $regis as $playa))--}}
+
+        {{--{{$playa['display_name']}}--}}
+
+    {{----}}
+
         {{--@endforeach--}}
 
-{{--@endforeach--}}
+@endforeach
 
 
-{!! $player !!}
-
-{{var_dump($player)}}
-
+{{$total_points}}
 {{--{{$team->team_json['city']}}--}}
 
 

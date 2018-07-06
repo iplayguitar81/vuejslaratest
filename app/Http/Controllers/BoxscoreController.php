@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Boxscore;
 use App\Team;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -81,7 +82,18 @@ class BoxscoreController extends Controller
 
 //$player = Boxscore::where('boxscore_json->away_stats', 'like',  '%Alex Len%')->avg(['boxscore_json->away_stats->points']);
 
-$player = Boxscore::where('boxscore_json->away_stats', 'like',  '%LeBron James%')->count(['boxscore_json->away_stats->points']);;
+    $player = Boxscore::where('boxscore_json->away_stats', 'like',  '%LeBron James%')->get();
+
+   // $player = json_encode($player,true);
+
+     //$player = json_encode($player['boxscore_json'], true);
+      //  $player = new Collection($player);
+
+
+     //   $player = $player->count('points');
+//        $player = $player->sum(function ($play) {
+//            return $play->boxscore_json->away_stats->sum('points');
+//        });
 
        // $player = Boxscore::whereRaw('JSON_CONTAINS(boxscore_json->away_stats"$[*].display_name", "Alex Len")')->get();
 

@@ -1,8 +1,7 @@
 
 @if($games_played == 0)
 
-
-    Sorry!  This player was on the roster but there are no game stats for this player because they never actually played a game!
+    <p>Sorry!  {{$player_name}} was on the roster but there are no game stats for him because he never actually played a game!</p>
 
     @else
 
@@ -11,6 +10,7 @@
 <hr/>
 
 <p>Total Points:  {{$total_points}}</p>
+
 <p>Points Per Game:  {{$rs_points_avg}}</p>
 
 <p>Total Rebounds:  {{$total_rebounds}}</p>

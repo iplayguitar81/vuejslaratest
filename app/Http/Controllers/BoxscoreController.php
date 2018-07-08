@@ -54,85 +54,107 @@ class BoxscoreController extends Controller
     }
 
 
-    public function showStats(){
-
-       // $boxscore = Boxscore::all();
-
-       // $team = Team::all();
-
-       // $team = $team->where('team_json->city', 'Portland');
-
-        $team = DB::table('teams')
-            ->where('team_json->city', 'Portland')
-            ->get(['team_json']);
+    public function showStats($slug){
 
 
+//        $team = DB::table('teams')
+//            ->where('team_json->city', 'Portland')
+//            ->get(['team_json']);
+
+        //$player_name = str_slug($slug);
+
+       $player_name = str_replace('-', ' ', $slug);
+       $player_name = str_replace('_', '-', $player_name);
 
 
-      // $team = json_decode($team,true);
+        $player = Boxscore::where([
+            ['boxscore_json->away_stats', 'like',  '%'.$player_name.'%'],
+            ['season_type', '=',  'regular'],
+        ])->orWhere([
+            ['boxscore_json->home_stats', 'like',  '%'.$player_name.'%'],
+            ['season_type', '=',  'regular'],
+        ])->groupBy('event_id')->get();
 
-       // $team = json_encode($team);
-
-//        $player = DB::table('boxscores')
-//            ->where('boxscore_json->away_team->full_name', 'Phoenix Suns')
-//            ->get();
-//
-
-       // $player = Boxscore::whereRaw('JSON_CONTAINS(boxscore_json->away_stats$., "Alex Len")')->get();
-
-//$player = Boxscore::where('boxscore_json->away_stats', 'like',  '%Alex Len%')->avg(['boxscore_json->away_stats->points']);
-
-    $player = Boxscore::where('boxscore_json->away_stats', 'like',  '%LeBron James%')->get();
-
-   // $player = json_encode($player,true);
-
-     //$player = json_encode($player['boxscore_json'], true);
-      //  $player = new Collection($player);
-
-
-     //   $player = $player->count('points');
-//        $player = $player->sum(function ($play) {
-//            return $play->boxscore_json->away_stats->sum('points');
-//        });
-
-       // $player = Boxscore::whereRaw('JSON_CONTAINS(boxscore_json->away_stats"$[*].display_name", "Alex Len")')->get();
-
-        //$player = Boxscore::whereRaw('JSON_CONTAINS(boxscore_json->away_stats->"$[*]."->display_name, "Alex Len")')->get();
-        //Note::where('note_id','1')->get(['user_id']);
-      // $player = Boxscore::whereRaw('JSON_CONTAINS(boxscore_json->away_team, \'{"full_name": "Phoenix Suns"}\')')->get();
-
-//        $team = Team::where([
-//            ['team_json->team_id', 'like', 'toronto-raptors'],
-//        ])->get();
-
-
-//       $teamArr = ['atlanta-hawks', 'dallas-mavericks', 'chicago-bulls'];
-//
-//        $team = Team::whereIn('team_json->team_id', $teamArr)->get();
-
-      // $team = DB::table('teams')->where(DB::raw('JSON_EXTRACT(`teams.team_json`, "$.team_id")'), '=', 'dallas-mavericks');
-
-      //  $team = DB::table('teams')->where('team_json->team_id', 'atlanta-hawks')->get();
-
-       // $team = Team::whereRaw('JSON_CONTAINS(team_json->"$[*].team_id", "atlanta-hawks")')->get();
-
-//        $boxscore = Boxscore::whereRaw('JSON_CONTAINS(boxscore_json->"$[*].display_name", "Alex Len")')->get();
-
-       // $boxscore = Boxscore::whereRaw('JSON_CONTAINS(boxscore_json->home_team->"$[*].team_id", "dallas-mavericks")')->get();
-
-//        $test_dude = [];
-
-//        foreach($boxscore as $box) {
-//            ;
-//            array_push($test_dude, $box->whereJsonContains('away_stats', 'Alex Len'));
-//
-//        }
+//$games_played = Boxscore::where([
+//            ['boxscore_json->away_stats', 'like',  '%LeBron James%'],
+//            ['season_type', '=',  'regular'],
+//        ])->orWhere([
+//            ['boxscore_json->home_stats', 'like',  '%LeBron James%'],
+//            ['season_type', '=',  'regular'],
+//        ])->groupBy('event_id');
 
 
 
 
-        //return view('boxscore.show-stats', compact('team', 'player') );
-        return view('boxscore.show-stats')->with(compact('team', 'player'));;
+   // $games_played = Boxscore::where('boxscore_json->away_stats', 'like',  '%LeBron James%')->orWhere('boxscore_json->home_stats', 'like',  '%LeBron James%')->where('season_type', '=',  'regular')->groupBy('event_id')->count();
+
+//    $player_away = Boxscore::where('boxscore_json->away_stats', 'like',  '%LeBron James%')->where('season_type', '=',  'regular')->groupBy('event_id')->count();
+//    $player_home = Boxscore::where('boxscore_json->home_stats', 'like',  '%LeBron James%')->where('season_type', '=',  'regular')->groupBy('event_id')->count();
+
+//        $games_played = $player_away + $player_home;
+
+        $total_points = 0;
+        $total_rebounds = 0;
+        $total_blocks = 0;
+        $total_steals = 0;
+        $total_assists = 0;
+
+        $games_played = 0;
+
+
+
+
+        foreach($player as $play)
+        {
+
+            foreach($play['boxscore_json']['away_stats'] as $regis){
+
+
+            if($regis['display_name'] == $player_name){
+
+                $total_points+=$regis['points'];
+                $total_rebounds+=$regis['rebounds'];
+                $total_blocks+=$regis['blocks'];
+                $total_steals+=$regis['steals'];
+                $total_assists+=$regis['assists'];
+                $games_played +=1;
+
+            }
+
+            }
+
+        }
+
+        foreach($player as $play)
+        {
+
+            foreach($play['boxscore_json']['home_stats'] as $regis){
+
+
+                if($regis['display_name'] == $player_name){
+
+                    $total_points+=$regis['points'];
+                    $total_rebounds+=$regis['rebounds'];
+                    $total_blocks+=$regis['blocks'];
+                    $total_steals+=$regis['steals'];
+                    $total_assists+=$regis['assists'];
+                    $games_played +=1;
+
+                }
+
+            }
+
+        }
+
+
+        if($games_played > 0) {
+        $rs_points_avg = round(($total_points/$games_played),1);
+        }
+        else {
+            $rs_points_avg = 0;
+        }
+
+        return view('boxscore.show-stats')->with(compact('team','player','total_points', 'total_rebounds', 'total_blocks', 'total_steals', 'total_assists', 'games_played', 'rs_points_avg', 'player_name'));;
 
     }
 

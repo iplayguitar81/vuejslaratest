@@ -1,49 +1,32 @@
 
-
-@php
-    $total_points = 0;
-@endphp
-
-@foreach($player as $play)
-{{--{{((json_encode($play['boxscore_json']['away_stats'], true)))}}--}}
-
-@foreach($play['boxscore_json']['away_stats'] as $regis)
+@if($games_played == 0)
 
 
-    @if($regis['display_name'] =='LeBron James')
+    Sorry!  This player was on the roster but there are no game stats for this player because they never actually played a game!
 
-    @php
-    $total_points+=$regis['points']
-    @endphp
+    @else
+
+<p>{{$player_name}} Regular Season Stats:</p>
+
+<hr/>
+
+<p>Total Points:  {{$total_points}}</p>
+<p>Points Per Game:  {{$rs_points_avg}}</p>
+
+<p>Total Rebounds:  {{$total_rebounds}}</p>
+
+<p>Total Blocks:  {{$total_blocks}}</p>
+
+<p>Total Steals:  {{$total_steals}}</p>
+
+<p>Total Assists:  {{$total_assists}}</p>
+
+
+<p>Total Regular Season Games Played:  {{$games_played}}</p>
+
+
 
     @endif
 
 
-    @endforeach
 
-{{--{{$play['display_name']}}--}}
-
-@php
-//$regis = json_decode($play['boxscore_json']['away_stats'],true);
-@endphp
-
-    {{--@foreach( $regis as $playa))--}}
-
-        {{--{{$playa['display_name']}}--}}
-
-    {{----}}
-
-        {{--@endforeach--}}
-
-@endforeach
-
-
-{{$total_points}}
-{{--{{$team->team_json['city']}}--}}
-
-
-{{--{{$team->team_json['city']}}--}}
-
-
-<br/>
-{{gettype($team)}}

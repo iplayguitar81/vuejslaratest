@@ -75,34 +75,18 @@ class BoxscoreController extends Controller
             ['season_type', '=',  'regular'],
         ])->groupBy('event_id')->get();
 
-//$games_played = Boxscore::where([
-//            ['boxscore_json->away_stats', 'like',  '%LeBron James%'],
-//            ['season_type', '=',  'regular'],
-//        ])->orWhere([
-//            ['boxscore_json->home_stats', 'like',  '%LeBron James%'],
-//            ['season_type', '=',  'regular'],
-//        ])->groupBy('event_id');
 
+       // $player = Boxscore::whereRaw(['boxscore_json->away_stats', 'like',  '%'.$player_name.'%'])->orWhereRaw(['boxscore_json->home_stats', 'like',  '%'.$player_name.'%']);
 
+        $player = Boxscore::whereRaw('lower(boxscore_json->"$.away_stats") like lower(?)', ["%{$player_name}%"])->orWhereRaw('lower(boxscore_json->"$.home_stats") like lower(?)', ["%{$player_name}%"])->groupBy('event_id')->get();
 
-
-   // $games_played = Boxscore::where('boxscore_json->away_stats', 'like',  '%LeBron James%')->orWhere('boxscore_json->home_stats', 'like',  '%LeBron James%')->where('season_type', '=',  'regular')->groupBy('event_id')->count();
-
-//    $player_away = Boxscore::where('boxscore_json->away_stats', 'like',  '%LeBron James%')->where('season_type', '=',  'regular')->groupBy('event_id')->count();
-//    $player_home = Boxscore::where('boxscore_json->home_stats', 'like',  '%LeBron James%')->where('season_type', '=',  'regular')->groupBy('event_id')->count();
-
-//        $games_played = $player_away + $player_home;
 
         $total_points = 0;
         $total_rebounds = 0;
         $total_blocks = 0;
         $total_steals = 0;
         $total_assists = 0;
-
         $games_played = 0;
-
-
-
 
         foreach($player as $play)
         {
@@ -110,7 +94,7 @@ class BoxscoreController extends Controller
             foreach($play['boxscore_json']['away_stats'] as $regis){
 
 
-            if($regis['display_name'] == $player_name){
+            if(strtolower( $regis['display_name']) == $player_name){
 
                 $total_points+=$regis['points'];
                 $total_rebounds+=$regis['rebounds'];
@@ -131,7 +115,7 @@ class BoxscoreController extends Controller
             foreach($play['boxscore_json']['home_stats'] as $regis){
 
 
-                if($regis['display_name'] == $player_name){
+                if(strtolower( $regis['display_name']) == $player_name){
 
                     $total_points+=$regis['points'];
                     $total_rebounds+=$regis['rebounds'];

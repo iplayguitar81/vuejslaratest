@@ -47,7 +47,7 @@ class BoxscoreController extends Controller
 
     public function show($slug)
     {
-        //
+
         $boxscore = Boxscore::where('event_id', $slug)->first();
 
         return view('boxscore.show', compact('boxscore') );
@@ -76,10 +76,13 @@ class BoxscoreController extends Controller
         ])->groupBy('event_id')->get();
 
 
-       // $player = Boxscore::whereRaw(['boxscore_json->away_stats', 'like',  '%'.$player_name.'%'])->orWhereRaw(['boxscore_json->home_stats', 'like',  '%'.$player_name.'%']);
 
-        $player = Boxscore::whereRaw('lower(boxscore_json->"$.away_stats") like lower(?)', ["%{$player_name}%"])->orWhereRaw('lower(boxscore_json->"$.home_stats") like lower(?)', ["%{$player_name}%"])->groupBy('event_id')->get();
+       $player = Boxscore::whereRaw('lower(boxscore_json->"$.away_stats") like lower(?)', ["%{$player_name}%"])->where('season_type', '=', 'regular')->orWhereRaw('lower(boxscore_json->"$.home_stats") like lower(?)', ["%{$player_name}%"])->where('season_type', '=', 'regular')->groupBy('event_id')->get();
 
+
+
+//        $player = Boxscore::where(DB::raw('lower(boxscore_json->"$.away_stats")', 'like', DB::raw('lower(%{$player_name}%)'))
+//            ->where('season_type', '=', 'regular'))->get();
 
         $total_points = 0;
         $total_rebounds = 0;

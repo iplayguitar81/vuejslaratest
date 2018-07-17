@@ -15,7 +15,7 @@
 
     @endphp
 
-            <a href="{{url('boxscores/player/'.$player_slug)}}">{{ $team['display_name']}}</a> {{' | Birthdate: '. $team['birthdate'] .' | Age: '. $team['age'] .' | Birthplace: '.  $team['birthplace'] .' | Height: '. $team['height_formatted'] .' | Weight: '. $team['weight_lb'] .' | Position: '. $team['position'] .' | Uniform #: '. $team['uniform_number'] }}
+            <a href="{{url('players/'.$player_slug)}}">{{ $team['display_name']}}</a> {{' | Birthdate: '. $team['birthdate'] .' | Age: '. $team['age'] .' | Birthplace: '.  $team['birthplace'] .' | Height: '. $team['height_formatted'] .' | Weight: '. $team['weight_lb'] .' | Position: '. $team['position'] .' | Uniform #: '. $team['uniform_number'] }}
     <br/>
     <br/>
 

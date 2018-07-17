@@ -5,14 +5,26 @@
 
 @if($games_played == 0)
 
-    <p>Sorry!  {{$player_name}} was on the roster but there are no game stats for him because he never actually played a game!</p>
+    <p>Sorry!  {{$display_name}} was on the roster but there are no game stats for him because he never actually played a game!</p>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+
 
     @else
 
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
             <h2 class="display-5 text-center">
-                {{$player_name}}
+                {{$display_name}}
                 <p>Regular Season Statistics</p>
             </h2>
 
@@ -85,4 +97,24 @@
 
 
 
+
+@php
+
+
+
+
+
+$replace_dash = str_replace('-', '_', $display_name);
+
+                     $player_slug = str_replace(' ', '-', $replace_dash);
+
+                    $player_slug = strtolower($player_slug);
+@endphp
+{{--@include('partials.playoffs-player-stats')--}}
+
+{!! showPlayoffStats($player_slug) !!}
+
+
 @endsection
+
+{{--@include('partials.playoffs-player-stats', ['slug' => strtolower($display_name)])--}}

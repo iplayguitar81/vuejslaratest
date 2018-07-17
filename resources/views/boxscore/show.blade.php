@@ -33,7 +33,17 @@
 
             @foreach($boxscore->boxscore_json['away_stats'] as $player)
 
-                <tr style="border: 1px inset #000;"><td class="starter"> {{$player['display_name']}}</td><td class="starter" style="border: 1px inset #000;">{{$player['minutes']}}</td><td class="starter" style="border: 1px inset #000;">{{$player['points']}}</td><td class="starter" style="border: 1px inset #000;">{{$player['field_goals_made']}}-{{$player['field_goals_attempted']}}</td><td style="border: 1px inset #000;" class="starter hide_box_column">{{$player['three_point_field_goals_made']}}-{{$player['three_point_field_goals_attempted']}}</td><td class="starter" style="border: 1px inset #000;">{{$player['free_throws_made']}}-{{$player['free_throws_attempted']}}</td><td style="border: 1px inset #000;" class="starter hide_box_column">{{$player['offensive_rebounds']}}</td><td style="border: 1px inset #000;" class="starter hide_box_column">{{$player['defensive_rebounds']}}</td><td class="starter" style="border: 1px inset #000;">{{$player['rebounds']}}</td><td class="starter" style="border: 1px inset #000;">{{$player['assists']}}</td><td style="border: 1px inset #000;" class="starter hide_box_column">{{$player['steals']}}</td><td style="border: 1px inset #000;" class="starter hide_box_column">{{$player['blocks']}}</td><td style="border: 1px inset #000;" class="starter hide_box_column">{{$player['turnovers']}}</td><td class="starter" style="border: 1px inset #000;">{{$player['personal_fouls']}}</td></tr>
+                @php
+
+                    $replace_dash = str_replace('-', '_', $player['display_name']);
+
+                     $player_slug = str_replace(' ', '-', $replace_dash);
+
+                    $player_slug = strtolower($player_slug);
+
+                @endphp
+
+                <tr style="border: 1px inset #000;"><td class="starter"><a href="{{url('players/'.$player_slug)}}"> {{$player['display_name']}}</a></td><td class="starter" style="border: 1px inset #000;">{{$player['minutes']}}</td><td class="starter" style="border: 1px inset #000;">{{$player['points']}}</td><td class="starter" style="border: 1px inset #000;">{{$player['field_goals_made']}}-{{$player['field_goals_attempted']}}</td><td style="border: 1px inset #000;" class="starter hide_box_column">{{$player['three_point_field_goals_made']}}-{{$player['three_point_field_goals_attempted']}}</td><td class="starter" style="border: 1px inset #000;">{{$player['free_throws_made']}}-{{$player['free_throws_attempted']}}</td><td style="border: 1px inset #000;" class="starter hide_box_column">{{$player['offensive_rebounds']}}</td><td style="border: 1px inset #000;" class="starter hide_box_column">{{$player['defensive_rebounds']}}</td><td class="starter" style="border: 1px inset #000;">{{$player['rebounds']}}</td><td class="starter" style="border: 1px inset #000;">{{$player['assists']}}</td><td style="border: 1px inset #000;" class="starter hide_box_column">{{$player['steals']}}</td><td style="border: 1px inset #000;" class="starter hide_box_column">{{$player['blocks']}}</td><td style="border: 1px inset #000;" class="starter hide_box_column">{{$player['turnovers']}}</td><td class="starter" style="border: 1px inset #000;">{{$player['personal_fouls']}}</td></tr>
 
             @endforeach
 
@@ -49,7 +59,18 @@
             <tr style="border: 1px inset #000;font-weight:800;"><td style="border: 1px inset #000;">PLAYER</td><td style="border: 1px inset #000;">MIN</td><td style="border: 1px inset #000;">PTS</td><td style="border: 1px inset #000;">FGM-A</td><td style="border: 1px inset #000;" class="hide_box_column">3PM-A</td><td style="border: 1px inset #000;">FTM-A</td><td style="border: 1px inset #000;" class="hide_box_column">O-REB</td><td style="border: 1px inset #000;" class="hide_box_column">D-REB</td><td style="border: 1px inset #000;">REB</td><td style="border: 1px inset #000;">AST</td><td style="border: 1px inset #000;" class="hide_box_column">STL</td><td style="border: 1px inset #000;" class="hide_box_column">BLK</td><td style="border: 1px inset #000;" class="hide_box_column">TO</td><td style="border: 1px inset #000;">PF</td></tr>
 
             @foreach($boxscore->boxscore_json['home_stats'] as $player)
-                <tr style="border: 1px inset #000;"><td class="starter"> {{$player['display_name']}}</td><td class="starter" style="border: 1px inset #000;">{{$player['minutes']}}</td><td class="starter" style="border: 1px inset #000;">{{$player['points']}}</td><td class="starter" style="border: 1px inset #000;">{{$player['field_goals_made']}}-{{$player['field_goals_attempted']}}</td><td style="border: 1px inset #000;" class="starter hide_box_column">{{$player['three_point_field_goals_made']}}-{{$player['three_point_field_goals_attempted']}}</td><td class="starter" style="border: 1px inset #000;">{{$player['free_throws_made']}}-{{$player['free_throws_attempted']}}</td><td style="border: 1px inset #000;" class="starter hide_box_column">{{$player['offensive_rebounds']}}</td><td style="border: 1px inset #000;" class="starter hide_box_column">{{$player['defensive_rebounds']}}</td><td class="starter" style="border: 1px inset #000;">{{$player['rebounds']}}</td><td class="starter" style="border: 1px inset #000;">{{$player['assists']}}</td><td style="border: 1px inset #000;" class="starter hide_box_column">{{$player['steals']}}</td><td style="border: 1px inset #000;" class="starter hide_box_column">{{$player['blocks']}}</td><td style="border: 1px inset #000;" class="starter hide_box_column">{{$player['turnovers']}}</td><td class="starter" style="border: 1px inset #000;">{{$player['personal_fouls']}}</td></tr>
+
+                @php
+
+                    $replace_dash = str_replace('-', '_', $player['display_name']);
+
+                     $player_slug = str_replace(' ', '-', $replace_dash);
+
+                    $player_slug = strtolower($player_slug);
+
+                @endphp
+
+                <tr style="border: 1px inset #000;"><td class="starter"> <a href="{{url('players/'.$player_slug)}}">{{$player['display_name']}}</a></td><td class="starter" style="border: 1px inset #000;">{{$player['minutes']}}</td><td class="starter" style="border: 1px inset #000;">{{$player['points']}}</td><td class="starter" style="border: 1px inset #000;">{{$player['field_goals_made']}}-{{$player['field_goals_attempted']}}</td><td style="border: 1px inset #000;" class="starter hide_box_column">{{$player['three_point_field_goals_made']}}-{{$player['three_point_field_goals_attempted']}}</td><td class="starter" style="border: 1px inset #000;">{{$player['free_throws_made']}}-{{$player['free_throws_attempted']}}</td><td style="border: 1px inset #000;" class="starter hide_box_column">{{$player['offensive_rebounds']}}</td><td style="border: 1px inset #000;" class="starter hide_box_column">{{$player['defensive_rebounds']}}</td><td class="starter" style="border: 1px inset #000;">{{$player['rebounds']}}</td><td class="starter" style="border: 1px inset #000;">{{$player['assists']}}</td><td style="border: 1px inset #000;" class="starter hide_box_column">{{$player['steals']}}</td><td style="border: 1px inset #000;" class="starter hide_box_column">{{$player['blocks']}}</td><td style="border: 1px inset #000;" class="starter hide_box_column">{{$player['turnovers']}}</td><td class="starter" style="border: 1px inset #000;">{{$player['personal_fouls']}}</td></tr>
             @endforeach
 
             <tr style="border: 1px inset #000;font-weight:800;">

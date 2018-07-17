@@ -97,8 +97,10 @@ Route::get('rosters/{team_id}', ['as' => 'roster.show', 'uses' => 'RosterControl
 Route::get('schedules/{team_id}', ['as' => 'schedule.show', 'uses' => 'ScheduleController@show']);
 
 
-Route::get('boxscores/player/{display_name}', ['as' => 'boxscore.show-stats', 'uses' => 'BoxscoreController@showStats']);
-//});
+Route::get('/players/{display_name}', ['as' => 'boxscore.show-stats', 'uses' => 'BoxscoreController@showStats']);
+
+//Route::get('boxscores/player/{display_name}', ['as' => 'partials.playoffs-player-stats', 'uses' => 'BoxscoreController@showPlayoffStats']);
+
 
 
 

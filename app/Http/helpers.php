@@ -166,13 +166,37 @@ function gameDate($date) {
         $rs_fga_avg = round(($field_goals_attempted/$ps_games_played),1);
         $rs_fg_pct_avg = round(($field_goals_made/$field_goals_attempted),3);
 
-        $rs_3ptm_avg = round(($three_point_field_goals_made/$ps_games_played),1);
-        $rs_3pta_avg = round(($three_point_field_goals_attempted/$ps_games_played),1);
-        $rs_3pt_pct_avg = round(($three_point_field_goals_made/$three_point_field_goals_attempted),3);
 
-        $rs_ftm_avg = round(($free_throws_made/$ps_games_played),1);
-        $rs_fta_avg = round(($free_throws_attempted/$ps_games_played),1);
-        $rs_ft_pct_avg = round(($free_throws_made/$free_throws_attempted),3);
+
+
+        //check to see if three pointers were shot and set to 0 if not
+        if($three_point_field_goals_attempted > 0){
+            $rs_3ptm_avg = round(($three_point_field_goals_made/$ps_games_played),1);
+            $rs_3pta_avg = round(($three_point_field_goals_attempted/$ps_games_played),1);
+            $rs_3pt_pct_avg = round(($three_point_field_goals_made/$three_point_field_goals_attempted),3);
+        }
+        else {
+            $rs_3ptm_avg = 0;
+            $rs_3pta_avg = 0;
+            $rs_3pt_pct_avg = 0;
+        }
+
+        //check to see if free throws were shot and set to 0 if not
+        if($free_throws_attempted > 0) {
+            $rs_ftm_avg = round(($free_throws_made / $ps_games_played), 1);
+            $rs_fta_avg = round(($free_throws_attempted / $ps_games_played), 1);
+            $rs_ft_pct_avg = round(($free_throws_made / $free_throws_attempted), 3);
+        }
+
+        else {
+            $rs_ftm_avg = 0;
+            $rs_fta_avg = 0;
+            $rs_ft_pct_avg = 0;
+
+        }
+
+
+
 
 
     }

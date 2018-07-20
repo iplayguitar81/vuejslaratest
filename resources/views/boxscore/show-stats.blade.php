@@ -5,7 +5,7 @@
 
 @if($games_played == 0)
 
-    <p>Sorry!  {{$display_name}} was on the roster but there are no game stats for him because he never actually played a game!</p>
+    <p>Sorry! {{$display_name}} was on the roster but there are no game stats for him because he never actually played a game!</p>
     <br/>
     <br/>
     <br/>

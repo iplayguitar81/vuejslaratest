@@ -16,6 +16,8 @@ use App\Roster;
 use App\Schedule;
 use App\Boxscore;
 
+use Illuminate\Support\Facades\Mail;
+use App\Mail\UserRegistered;
 
 
 Route::get('/', function () {
@@ -23,6 +25,13 @@ Route::get('/', function () {
 
 });
 
+
+Route::get('/test-queues', function () {
+
+    Mail::to('test@example.com')->queue(new UserRegistered);
+    return view('welcome');
+
+});
 
 Route::get('/teams', function () {
 

@@ -14,11 +14,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
-//        view()->composer('partials.playoffs-player-stats', function($view) {
-//            $view->with('display_name');
-//
-//        });
+
 
         Schema::defaultStringLength(191);
     }

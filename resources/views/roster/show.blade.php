@@ -2,7 +2,13 @@
 @section('title', $roster->team_id.' Roster')
 @section('content')
 
+
     <div class="container">
+        <a href="{{ route('generate-pdf-roster',['view'=>'pdf', 'boxscore' =>$roster->team_id]) }}">Download PDF</a>
+        <br/>
+        <br/>
+
+
 @foreach($roster->roster_json['players'] as $team)
 
     @php

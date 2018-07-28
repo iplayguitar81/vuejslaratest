@@ -9,6 +9,8 @@
             </h2>
 
         </div>
+
+        <a href="{{ route('generate-pdf-teams',['view'=>'pdf']) }}">Download PDF</a>
     </div>
 
     <div class="container">
@@ -25,7 +27,6 @@
 
             @if($team->team_json['division'] == "Northwest")
 
-                {{--<a href="{{url('/teams/'.$team->team_json["team_id"])}}"> {{$team->team_json['full_name']}}</a>--}}
 
                     <div class="col-lg-2 col-sm-6 col-6">
 
@@ -55,7 +56,6 @@
 
             @if($team->team_json['division'] == "Pacific")
 
-                {{--<a href="{{url('/teams/'.$team->team_json["team_id"])}}"> {{$team->team_json['full_name']}}</a>--}}
 
                 <div class="col-lg-2 col-sm-6 col-6">
 
@@ -86,7 +86,6 @@
 
                 @if($team->team_json['division'] == "Southwest")
 
-                    {{--<a href="{{url('/teams/'.$team->team_json["team_id"])}}"> {{$team->team_json['full_name']}}</a>--}}
 
                     <div class="col-lg-2 col-sm-6 col-6">
 
@@ -120,7 +119,6 @@
 
                 @if($team->team_json['division'] == "Atlantic")
 
-                    {{--<a href="{{url('/teams/'.$team->team_json["team_id"])}}"> {{$team->team_json['full_name']}}</a>--}}
 
                     <div class="col-lg-2 col-sm-6 col-6">
 
@@ -150,7 +148,6 @@
 
                 @if($team->team_json['division'] == "Central")
 
-                    {{--<a href="{{url('/teams/'.$team->team_json["team_id"])}}"> {{$team->team_json['full_name']}}</a>--}}
 
                     <div class="col-lg-2 col-sm-6 col-6">
 
@@ -183,7 +180,6 @@
 
                 @if($team->team_json['division'] == "Southeast")
 
-                    {{--<a href="{{url('/teams/'.$team->team_json["team_id"])}}"> {{$team->team_json['full_name']}}</a>--}}
 
                     <div class="col-lg-2 col-sm-6 col-6">
 

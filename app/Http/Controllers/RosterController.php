@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Roster;
 use Illuminate\Http\Request;
+use Barryvdh\Snappy\Facades\SnappyPdf;
+use Barryvdh\Snappy\IlluminateSnappyPdf;
+
 
 class RosterController extends Controller
 {
@@ -50,9 +53,35 @@ class RosterController extends Controller
 
         $roster = Roster::where('team_id', $slug)->first();
 
-        return view('roster.show', compact('roster') );
+
+
+        return view('roster.show', compact('roster', 'slug') );
 
     }
+
+
+    /**
+     * Stream pdf for Roster view.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function pdfViewRoster(Request $request)
+    {
+
+
+
+        if($request->has('view')) {
+
+            $roster = Roster::where('team_id', $request->team)->first();
+            view()->share('roster',$roster);
+            // pass view file
+            $pdf = SnappyPdf::loadView('roster.show');
+            // download pdf
+            return $pdf->stream('team-roster.pdf');
+        }
+        return view('pdfview');
+    }
+
 
     /**
      * Show the form for editing the specified resource.

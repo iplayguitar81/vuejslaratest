@@ -4,6 +4,10 @@
 
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
+            <a href="{{ route('generate-pdf-boxscore',['view'=>'pdf', 'boxscore' =>$boxscore->event_id]) }}">Download PDF</a>
+            <br/>
+            <br/>
+
             <h2 class="display-5 text-center">
                 {{$boxscore->boxscore_json['away_team']['full_name'].' '.$boxscore->boxscore_json['away_totals']['points']}}
                 <p>at</p>

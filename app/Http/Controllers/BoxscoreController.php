@@ -8,7 +8,8 @@ use App\Team;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+use Barryvdh\Snappy\Facades\SnappyPdf;
+use Barryvdh\Snappy\IlluminateSnappyPdf;
 
 
 class BoxscoreController extends Controller
@@ -459,4 +460,80 @@ class BoxscoreController extends Controller
     {
         //
     }
+
+
+    /**
+     * Stream pdf for Teamview.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function pdfViewTeam(Request $request)
+    {
+
+        $teams = Team::all();
+         view()->share('teams',$teams);
+
+         if($request->has('view')) {
+            // pass view file
+            $pdf = SnappyPdf::loadView('nba-stats.teams');
+            // download pdf
+            return $pdf->stream('teams.pdf');
+        }
+        return view('pdfview');
+    }
+
+
+
+    /**
+     * Stream pdf for Boxscore view.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function pdfViewBoxscore(Request $request)
+    {
+
+
+
+        if($request->has('view')) {
+
+            $boxscore = Boxscore::where('event_id', $request->boxscore)->first();
+
+            view()->share('boxscore', $boxscore);
+            // pass view file
+            $pdf = SnappyPdf::loadView('boxscore.show');
+            // download pdf
+            return $pdf->stream('team-roster.pdf');
+        }
+        return view('pdfview');
+    }
+
+    /**
+     * Stream pdf for Player Stats view.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function pdfViewPlayerStats(Request $request)
+    {
+
+
+
+        if($request->has('view')) {
+
+            $boxscore = Boxscore::where('event_id', $request->boxscore)->first();
+
+            view()->share('boxscore', $boxscore);
+            // pass view file
+            $pdf = SnappyPdf::loadView('boxscore.show');
+            // download pdf
+            return $pdf->stream('team-roster.pdf');
+        }
+        return view('pdfview');
+    }
+
+
+
+
+
+
+
 }

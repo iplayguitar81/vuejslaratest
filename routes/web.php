@@ -114,3 +114,15 @@ Route::get('/players/{display_name}', ['as' => 'boxscore.show-stats', 'uses' => 
 
 
 //Route::post('/nba', 'boxscoreTest@boxScorePost');
+
+//testing laravel-snappy
+Route::get('generate-pdf-teams', 'BoxscoreController@pdfViewTeam')->name('generate-pdf-teams');
+
+Route::get('generate-pdf-roster', 'RosterController@pdfViewRoster')->name('generate-pdf-roster');
+
+Route::get('generate-pdf-boxscore', 'BoxscoreController@pdfViewBoxscore')->name('generate-pdf-boxscore');
+
+Route::get('generate-pdf-player-stats', 'BoxscoreController@pdfViewPlayerStats')->name('generate-pdf-player-stats');
+
+
+

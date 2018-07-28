@@ -20,9 +20,9 @@ services:
             dockerfile: app.docker
         volumes:
             - ./:/var/www
+
         links:
             - database
-            - redis
         environment:
             - "DB_PORT=3306"
             - "DB_HOST=database"
@@ -33,3 +33,7 @@ services:
             - "MYSQL_DATABASE=dockerApp"
         ports:
             - "33061:3306"
+networks:
+  net:
+    driver: bridge
+

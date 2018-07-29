@@ -515,19 +515,41 @@ class BoxscoreController extends Controller
     public function pdfViewPlayerStats(Request $request)
     {
 
-
-
         if($request->has('view')) {
 
-            $boxscore = Boxscore::where('event_id', $request->boxscore)->first();
 
-            view()->share('boxscore', $boxscore);
+            $player_name = str_replace('-', ' ', $request->player_stats);
+            $player_name = str_replace('_', '-', $player_name);
+
+            $data = array(
+                'player_name' => $player_name,
+            );
+
+            view()->share('data', $data);
             // pass view file
-            $pdf = SnappyPdf::loadView('boxscore.show');
-            // download pdf
-            return $pdf->stream('team-roster.pdf');
+            $pdf = SnappyPdf::loadView('boxscore.test-stats')->setOrientation('landscape');
+            // view pdf
+            return $pdf->stream('player-stats.pdf');
         }
-        return view('pdfview');
+       // return view('pdfview');
+    }
+
+
+    public function testStats($slug){
+
+
+        $player_name = str_replace('-', ' ', $slug);
+        $player_name = str_replace('_', '-', $player_name);
+
+
+        $player_dashed = $slug;
+
+        $data = array(
+            'player_name' => $player_name
+        );
+
+        return view('boxscore.test-stats', compact('data', 'player_dashed'));
+
     }
 
 

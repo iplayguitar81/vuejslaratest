@@ -1,27 +1,13 @@
 @if($ps_games_played == 0)
 
-    {{--<p>Sorry!  {{$display_name}} was on the roster but there are no game stats for him because he never actually played a game!</p>--}}
+    <p>Sorry!  {{$display_name}} was on the roster but there are no postseason stats for him because he never actually played a game!</p>
 
 
 
 @else
 
-    {{--<div class="jumbotron jumbotron-fluid">--}}
-        {{--<div class="container">--}}
-            {{--<h2 class="display-5 text-center">--}}
-                {{--{{$display_name}}--}}
-                {{--<p>Regular Season Statistics</p>--}}
-            {{--</h2>--}}
-
-        {{--</div>--}}
-    {{--</div>--}}
-
-
 
     <div class="container">
-
-
-
 
         <h3>Playoff Averages</h3>
         <table class="table table-sm" id="last_game_period_box">
@@ -30,8 +16,6 @@
             </tbody>
         </table>
 
-
-        <br/>
         <br/>
         <h3>Playoff Totals</h3>
         <table class="table table-sm" id="last_game_period_box">
@@ -42,13 +26,7 @@
 
 
     </div>
+    <br/>
 
-
-
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
 
 @endif

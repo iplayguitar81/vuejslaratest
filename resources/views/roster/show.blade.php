@@ -4,7 +4,7 @@
 
 
     <div class="container">
-        <a href="{{ route('generate-pdf-roster',['view'=>'pdf', 'boxscore' =>$roster->team_id]) }}">Download PDF</a>
+        <a href="{{ route('generate-pdf-roster',['view'=>'pdf', 'team' =>$roster->team_id ]) }}">Download PDF</a>
         <br/>
         <br/>
 

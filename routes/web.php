@@ -108,12 +108,9 @@ Route::get('schedules/{team_id}', ['as' => 'schedule.show', 'uses' => 'ScheduleC
 
 Route::get('/players/{display_name}', ['as' => 'boxscore.show-stats', 'uses' => 'BoxscoreController@showStats']);
 
-//Route::get('boxscores/player/{display_name}', ['as' => 'partials.playoffs-player-stats', 'uses' => 'BoxscoreController@showPlayoffStats']);
+//test simplified Player Stats pdf view with link...
+Route::get('/players-pdf/{display_name}', ['as' => 'boxscore.test-stats', 'uses' => 'BoxscoreController@testStats']);
 
-
-
-
-//Route::post('/nba', 'boxscoreTest@boxScorePost');
 
 //testing laravel-snappy
 Route::get('generate-pdf-teams', 'BoxscoreController@pdfViewTeam')->name('generate-pdf-teams');

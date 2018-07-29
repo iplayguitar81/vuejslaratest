@@ -492,15 +492,13 @@ class BoxscoreController extends Controller
     public function pdfViewBoxscore(Request $request)
     {
 
-
-
         if($request->has('view')) {
 
             $boxscore = Boxscore::where('event_id', $request->boxscore)->first();
 
             view()->share('boxscore', $boxscore);
             // pass view file
-            $pdf = SnappyPdf::loadView('boxscore.show');
+            $pdf = SnappyPdf::loadView('boxscore.show')->setOrientation('landscape');
             // download pdf
             return $pdf->stream('team-roster.pdf');
         }

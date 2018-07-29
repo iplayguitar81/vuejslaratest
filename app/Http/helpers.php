@@ -239,6 +239,10 @@ function showRegularSeasonStats($slug)
 
     $player = Boxscore::whereRaw('lower(boxscore_json->"$.away_stats") like lower(?)', ["%{$player_name}%"])->where('season_type', '=', 'regular')->orWhereRaw('lower(boxscore_json->"$.home_stats") like lower(?)', ["%{$player_name}%"])->where('season_type', '=', 'regular')->groupBy('event_id')->get();
 
+    //how to get each regular/post season stats:
+    //$player = Boxscore::whereRaw('lower(boxscore_json->"$.away_stats") like lower(?)', ["%{$player_name}%"])->where('season_type', '=', 'regular')->whereBetween('boxscore_date',array('2016-10-01','2017-06-30'))->orWhereRaw('lower(boxscore_json->"$.home_stats") like lower(?)', ["%{$player_name}%"])->where('season_type', '=', 'regular')->whereBetween('boxscore_date',array('2016-10-01','2017-06-30'))->groupBy('event_id')->get();
+
+
     $total_points = 0;
     $total_rebounds = 0;
     $total_o_rebounds = 0;

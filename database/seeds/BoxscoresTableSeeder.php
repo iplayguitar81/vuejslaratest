@@ -24,7 +24,12 @@ class BoxscoresTableSeeder extends Seeder
 
         $ACCESS_TOKEN = env('STATS_API_KEY');
 
-        $schedules = Schedule::all();
+        //if you want to run the seeder based on all schedules:
+       // $schedules = Schedule::all();
+
+        //if you want to run the seeder based on a season (modify as necessary):
+        $schedules = Schedule::orderBy('event_date', 'desc')->whereBetween('event_date',array('2015-10-01','2016-06-30'))->get();
+
 
        // $email = DB::table('schedule.blade.php')->where('name', 'John')->value('email');
       //  $schedule = Schedule::where('schedule_json->event_status', 'completed')

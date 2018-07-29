@@ -39,7 +39,7 @@ class SchedulesTableSeeder extends Seeder
             //$url = "https://erikberg.com/nba/roster/".$teamsReqStr;
 
            // $url = 'https://erikberg.com/nba/roster/'.$teamVar.'.json';
-            $url = 'https://erikberg.com/nba/results/'.$teamVar.'.json?season=2018&since=20171001&until=20180630&event_status=completed';
+            $url = 'https://erikberg.com/nba/results/'.$teamVar.'.json?season=2016&since=20151001&until=20160630&event_status=completed';
 
 
 
@@ -59,7 +59,7 @@ class SchedulesTableSeeder extends Seeder
 
                 //$date->getTimestamp();
 
-                DB::table('schedule')->insert([
+                DB::table('schedules')->insert([
                     'event_id' => $event['event_id'],
                     'schedule_json' => json_encode($event),
                     'event_date' => $event['event_start_date_time'],

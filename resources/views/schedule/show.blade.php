@@ -9,7 +9,7 @@
 
     <p>{{ gameDate($schedule->event_date)  }} </p>
 
-    <p><a href="{{url('/boxscores/'.$schedule->event_id)}}"> {{$schedule->schedule_json['team']['full_name'] .' @ '. $schedule->schedule_json['opponent']['full_name'] }}</a></p>
+    <p><a href="{{url('/boxscores/'.$schedule->event_id)}}"> {{$schedule->schedule_json['team']['full_name'].' '. $schedule->schedule_json['team_points_scored']  .' @ '. $schedule->schedule_json['opponent']['full_name'].' '. $schedule->schedule_json['opponent_points_scored'].' '.$schedule->schedule_json['team_event_result'] }} </a></p>
 
 
     <hr/>

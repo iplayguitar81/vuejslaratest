@@ -45,6 +45,7 @@ class RostersTableSeeder extends Seeder
             $response = $client->request('GET', $url,[
 
                 'headers' => [
+                    'User-Agent' => 'trailblazersfans/0.1 (trailblazersfans.com)',
                     'Authorization' => 'Bearer ' . $ACCESS_TOKEN
                 ]
 

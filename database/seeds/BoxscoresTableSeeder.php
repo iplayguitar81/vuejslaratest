@@ -28,7 +28,7 @@ class BoxscoresTableSeeder extends Seeder
        // $schedules = Schedule::all();
 
         //if you want to run the seeder based on a season (modify as necessary):
-        $schedules = Schedule::orderBy('event_date', 'desc')->whereBetween('event_date',array('2015-10-01','2016-06-30'))->get();
+        $schedules = Schedule::orderBy('event_date', 'desc')->whereBetween('event_date',array('2015-10-01','2015-11-01'))->get();
 
 
        // $email = DB::table('schedule.blade.php')->where('name', 'John')->value('email');
@@ -57,6 +57,7 @@ class BoxscoresTableSeeder extends Seeder
             $response = $client->request('GET', $url,[
 
                 'headers' => [
+                    'User-Agent' => 'trailblazersfans/0.1 (trailblazersfans.com)',
                     'Authorization' => 'Bearer ' . $ACCESS_TOKEN
                 ]
 

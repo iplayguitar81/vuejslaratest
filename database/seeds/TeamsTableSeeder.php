@@ -25,10 +25,12 @@ class TeamsTableSeeder extends Seeder
         $url = 'https://erikberg.com/nba/teams.json';
 
 
-        $response = $client->request('GET', $url,[
-
+        $response = $client->request('GET', $url,  [
             'headers' => [
+                'User-Agent' => 'trailblazersfans/0.1 (trailblazersfans.com)',
                 'Authorization' => 'Bearer ' . $ACCESS_TOKEN
+
+
             ]
 
         ]);

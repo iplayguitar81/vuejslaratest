@@ -17,4 +17,7 @@ class Boxscore extends Model
         'boxscore_json' => 'array',
     ];
 
+
+    protected $fillable = ['event_id', 'boxscore_date', 'season_type', 'boxscore_json'];
+
 }

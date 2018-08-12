@@ -532,6 +532,34 @@ class BoxscoreController extends Controller
        // return view('pdfview');
     }
 
+    /**
+     * Stream pdf for Player Stats view.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function pdfViewPlayerStats2(Request $request)
+    {
+
+        if($request->has('view')) {
+
+            $player_name = str_replace('-', ' ', $request->player_stats);
+            $player_name = str_replace('_', '-', $player_name);
+
+            $data = array(
+                'player_name' => $player_name,
+            );
+
+            view()->share('data', $data);
+            // pass view file
+            $pdf = SnappyPdf::loadView('boxscore.test-stats2')->setOrientation('landscape');
+            // view pdf
+            return $pdf->stream('player-stats.pdf');
+        }
+
+    }
+
+
+
 
     public function testStats($slug){
 
@@ -547,6 +575,25 @@ class BoxscoreController extends Controller
         );
 
         return view('boxscore.test-stats', compact('data', 'player_dashed'));
+
+    }
+
+
+
+    public function testStats2($slug){
+
+
+        $player_name = str_replace('-', ' ', $slug);
+        $player_name = str_replace('_', '-', $player_name);
+
+
+        $player_dashed = $slug;
+
+        $data = array(
+            'player_name' => $player_name
+        );
+
+        return view('boxscore.test-stats2', compact('data', 'player_dashed'));
 
     }
 

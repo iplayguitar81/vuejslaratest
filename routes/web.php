@@ -111,6 +111,11 @@ Route::get('/players/{display_name}', ['as' => 'boxscore.show-stats', 'uses' => 
 //test simplified Player Stats pdf view with link...
 Route::get('/players-pdf/{display_name}', ['as' => 'boxscore.test-stats', 'uses' => 'BoxscoreController@testStats']);
 
+//more simplified Player Stats view
+Route::get('/tests/{display_name}', ['as' => 'boxscore.test-stats2', 'uses' => 'BoxscoreController@testStats2']);
+
+
+
 
 //testing laravel-snappy
 Route::get('generate-pdf-teams', 'BoxscoreController@pdfViewTeam')->name('generate-pdf-teams');
@@ -120,6 +125,10 @@ Route::get('generate-pdf-roster', 'RosterController@pdfViewRoster')->name('gener
 Route::get('generate-pdf-boxscore', 'BoxscoreController@pdfViewBoxscore')->name('generate-pdf-boxscore');
 
 Route::get('generate-pdf-player-stats', 'BoxscoreController@pdfViewPlayerStats')->name('generate-pdf-player-stats');
+
+Route::get('generate-pdf-player-stats2', 'BoxscoreController@pdfViewPlayerStats2')->name('generate-pdf-player-stats2');
+
+
 
 
 
